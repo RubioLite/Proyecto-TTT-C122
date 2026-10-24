@@ -52,3 +52,8 @@ def random_play(board):
     if not free:
         raise ValueError("No quedan casillas libres")
     return random.choice(free)
+
+def within_bounds(n, pos):
+    '''True si pos cae dentro del tablero de tamaño nxn'''
+    row, col = pos
+    return 0 <= row < n and 0 <= col < n

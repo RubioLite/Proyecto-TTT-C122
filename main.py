@@ -1,35 +1,12 @@
 from board import (
     create_board,
     print_board,
-    free_space,
     place_piece,
     random_play,
 )
+from cli import get_name, get_int, ask_move
 from rules import full_board
 import os
-
-def get_name():
-    '''Pide un nombre y rechaza cadenas vacías o de solo espacios'''
-    while True:
-        name = input("Como te llamas? ").strip()
-        if name:
-            return name
-        print("El nombre no puede ser vacío ni de solo espacios")
-
-def get_int(message, low, high):
-    '''Pide un entero dentro del rango [low, high]. Repite hasta lograrlo'''
-    while True:
-        entry = input(message)
-        try:
-            value = int(entry)
-        except ValueError:
-            print("Debes escribir un número entero")
-            continue
-        
-        if value < low or value > high:
-            print(f"El número debe estar entre {low} y {high}")
-            continue
-        return value
 
 def create_game(name, n, k):
     '''Crea y devuelve el diccionario que representa la partida'''
@@ -44,9 +21,7 @@ def create_game(name, n, k):
     }
 
 def play():
-    '''
-        Función principal que gestiona el progreso del juego
-    '''
+    '''Función principal que gestiona el progreso del juego'''
     
     print("TicTacToe NxN")
     
@@ -65,13 +40,7 @@ def play():
         print_board(board)
         
         # Turno del usuario
-        while True:
-            row = get_int(f"Fila (1-{n}): ", 1, n) - 1 # Para trabajar indexado desde 0
-            col = get_int(f"Columna (1-{n}): ", 1, n) - 1
-            pos = (row, col)
-            if free_space(board, pos):
-                break
-            print("Casilla ocupada, por favor selecciona otra")
+        pos = ask_move(board)
         place_piece(board, pos, user_s)
         
         if full_board(board):
