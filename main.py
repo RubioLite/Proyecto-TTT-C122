@@ -9,18 +9,18 @@ def get_name():
             return name
         print("El nombre no puede ser vacío ni de solo espacios")
 
-def get_int(message, min, max):
+def get_int(message, low, high):
     '''Pide un entero dentro del rango [min, max]. Repite hasta lograrlo'''
     while True:
-        input = input(message)
+        entry = input(message)
         try:
-            value = int(input)
+            value = int(entry)
         except ValueError:
             print("Debes escribir un número entero")
             continue
         
-        if value < min or value > max:
-            print(f"El número debe estar entre {min} y {max}")
+        if value < low or value > high:
+            print(f"El número debe estar entre {low} y {high}")
             continue
         return value
         
@@ -59,7 +59,7 @@ def print_board(board):
 
     header = [" "] * (width + 2 + 4 * n)
     for i in range(n):
-        header[width + 3 + 4 * i] = str(j + 1)
+        header[width + 3 + 4 * i] = str(i + 1)
     print("".join(header))
     separator = " " * (width + 1) + ("+" + "-" * cell) * n + "+"
     print(separator) # Fue duro escribir esto, el prueba y error fue grande xDDD
@@ -85,7 +85,7 @@ def random_play(board):
     free = [(i, j) for i in range(n) for j in range(n) if free_space(board, i, j)]
     if not free:
         raise ValueError("No quedan casillas libres")
-    return random.choices(free)
+    return random.choice(free)
 
 def play():
     '''
@@ -100,7 +100,7 @@ def play():
     game = create_game(name, n, k)
     board = game["board"]
     user_s = game["user_symbol"]
-    ia_s = game["user_symbol"]
+    ia_s = game["ia_symbol"]
     
     print(f"\nHola {name}")
     print(f"Bienvenido a TicTacToe {n}x{n}, conecta {k} fichas seguidas para ganar")
