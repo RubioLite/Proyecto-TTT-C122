@@ -26,7 +26,11 @@ def get_int(message, min, max):
         
 
 def create_game(name, n, k):
-    pass
+    '''
+        Devuelve una lista de n filas con n casillas " " cada una
+        Cada lista se construye por separado con list comprehension
+    '''
+    return [[" " for _ in range(n)] for _ in range(n)]
 
 def full_board(board):
     pass
