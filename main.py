@@ -33,7 +33,25 @@ def create_game(name, n, k):
     return [[" " for _ in range(n)] for _ in range(n)]
 
 def full_board(board):
-    pass
+    '''Imprime el tablero con números por fila o columnas en base 1'''
+    n = len(board)
+    width = len(str(n)) # Ancho de la etiqueta de la fila (1 cuando n <= 9)
+    cell = 3            # Ancho de cada casilla: " X "
+    
+    header = [" "] * (width + 2 + 4 * n)
+    for i in range(n):
+        header[width + 3 + 4 * i] = str(j + 1)
+    print("".join(header))
+    separator = " " * (width + 1) + ("+" + "-" * cell) * n + "+"
+    print(separator) # Fue duro escribir esto, el prueba y error fue grande xDDD
+    
+    # FILAS
+    for i in range(n):
+        line = f"{i+1:>{width}} |"
+        for j in range(n):
+            line += f" {board[i][j]} |"
+        print(line)
+        print(separator)
 
 def print_board(board):
     pass
