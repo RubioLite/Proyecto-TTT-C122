@@ -2,7 +2,12 @@ import random
 import os
 
 def get_name():
-    pass
+    '''Pide un nombre y rechaza cadenas vacías o de solo espacios'''
+    while True:
+        name = input("Como te llamas? ").strip()
+        if name:
+            return name
+        print("El nombre no puede ser vacío ni de solo espacios")
 
 def get_int(message, min, max):
     pass
