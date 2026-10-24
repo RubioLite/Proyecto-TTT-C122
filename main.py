@@ -33,7 +33,11 @@ def create_game(name, n, k):
     return [[" " for _ in range(n)] for _ in range(n)]
 
 def full_board(board):
-    pass
+    '''True si ya no quedan casillas vacías'''
+    for row in board:
+        if " " in row:
+            return False
+    return True
 
 def print_board(board):
     '''Imprime el tablero con números por fila o columnas en base 1'''
