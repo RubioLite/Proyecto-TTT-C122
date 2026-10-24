@@ -39,7 +39,7 @@ def place_piece(board, pos, symbol):
     board[row][col] = symbol
     
 def free_moves(board):
-    '''Devuelve una lista de tuplas (row, col con todas las casillas libres)'''
+    '''Devuelve una lista de tuplas (row, col) con todas las casillas libres'''
     n = len(board)
     return [(i, j) for i in range(n) for j in range(n) if free_space(board, (i, j))]
 

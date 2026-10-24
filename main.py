@@ -17,7 +17,7 @@ def get_name():
         print("El nombre no puede ser vacío ni de solo espacios")
 
 def get_int(message, low, high):
-    '''Pide un entero dentro del rango [min, max]. Repite hasta lograrlo'''
+    '''Pide un entero dentro del rango [low, high]. Repite hasta lograrlo'''
     while True:
         entry = input(message)
         try:
