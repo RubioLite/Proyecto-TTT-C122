@@ -25,12 +25,24 @@ def get_int(message, min, max):
         return value
         
 
-def create_game(name, n, k):
+def create_board(n):
     '''
         Devuelve una lista de n filas con n casillas " " cada una
         Cada lista se construye por separado con list comprehension
     '''
     return [[" " for _ in range(n)] for _ in range(n)]
+
+def create_game(name, n, k):
+    '''Crea y devuelve el diccionario que representa la partida'''
+    return {
+        "player": name,
+        "n": n,
+        "k": k,
+        "board": create_board(n),
+        "user_symbol": "X",
+        "ia_symbol": "O",
+        "state": "running",
+    }
 
 def full_board(board):
     '''True si ya no quedan casillas vacías'''
