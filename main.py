@@ -61,7 +61,8 @@ def print_board(board):
         print(separator)
 
 def free_space(board, row, col):
-    pass
+    '''True si la casilla (row, col) está vacía'''
+    return board[row][col] == " "
 
 def random_play(board):
     pass
