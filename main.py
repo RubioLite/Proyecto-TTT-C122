@@ -77,7 +77,15 @@ def free_space(board, row, col):
     return board[row][col] == " "
 
 def random_play(board):
-    pass
+    '''
+        Devuelve (fila, columna) de una casilla libre elegida al azar
+        (Más adelante esto será cambiado por un algoritmo mini-max simple)
+    '''
+    n = len(board)
+    free = [(i, j) for i in range(n) for j in range(n) if free_space(board, i, j)]
+    if not free:
+        raise ValueError("No quedan casillas libres")
+    return random.choices(free)
 
 def play():
     '''
