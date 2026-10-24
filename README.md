@@ -48,7 +48,7 @@ python main.py
 ├── cli.py           # Entrada por consola: get_name, get_int, ask_move
 ├── board.py         # Tablero: crear, imprimir, mover, casillas libres
 ├── rules.py         # Reglas: line_from, has_line, full_board
-└── test_reglas.py   # Tests con assert para rules.py
+└── test_rules.py   # Tests con assert para rules.py
 ```
 
 | Archivo | Responsabilidad |
@@ -57,12 +57,12 @@ python main.py
 | `cli.py` | Todo el I/O interactivo (`input`, validaciones, `ask_move`). |
 | `board.py` | Pura manipulación de la matriz N×N. Sin `input`, sin `print` de mensajes de juego. |
 | `rules.py` | Consultas sobre la matriz: ¿hay línea? ¿está lleno? Sin dibujar nada. |
-| `test_reglas.py` | Congela el comportamiento de `has_line` y `full_board`. |
+| `test_rules.py` | Congela el comportamiento de `has_line` y `full_board`. |
 
 ## Cómo probar
 
 ```bash
-python test_reglas.py
+python test_rules.py
 ```
 
 Debe imprimir `Todo correcto — reglas.py verificado.` Si algún assert falla,
