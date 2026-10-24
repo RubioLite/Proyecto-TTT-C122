@@ -1,4 +1,10 @@
-from board import create_board, print_board, free_space, random_play
+from board import (
+    create_board,
+    print_board,
+    free_space,
+    place_piece,
+    random_play,
+)
 from rules import full_board
 import os
 
@@ -62,18 +68,19 @@ def play():
         while True:
             row = get_int(f"Fila (1-{n}): ", 1, n) - 1 # Para trabajar indexado desde 0
             col = get_int(f"Columna (1-{n}): ", 1, n) - 1
-            if free_space(board, row, col):
+            pos = (row, col)
+            if free_space(board, pos):
                 break
             print("Casilla ocupada, por favor selecciona otra")
-        board[row][col] = user_s
+        place_piece(board, pos, user_s)
         
         if full_board(board):
             break # Si ya el tablero está lleno, la IA no puede jugar
         
         # Turno de la IA
-        r_ia, c_ia = random_play(board)
-        board[r_ia][c_ia] = ia_s
-        print(f"La ia juega en fila {r_ia+1}, columna {c_ia+1}\n")
+        ia_pos = random_play(board)
+        place_piece(board, ia_pos, ia_s)
+        print(f"La ia juega en fila {ia_pos[0]+1}, columna {ia_pos[1]+1}\n")
     
     print_board(board)
     print("Fin de la partida. Gracias por jugar :3")
