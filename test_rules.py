@@ -105,4 +105,4 @@ assert line_from(corner, (0, 0), (0, -1), "X", 3) is False
 assert line_from(corner, (0, 0), (-1, 0), "X", 3) is False
 
 
-print("Todo correcto — reglas.py verificado.")
+print("Todo correcto — reglas.py verificado")
