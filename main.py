@@ -10,7 +10,20 @@ def get_name():
         print("El nombre no puede ser vacío ni de solo espacios")
 
 def get_int(message, min, max):
-    pass
+    '''Pide un entero dentro del rango [min, max]. Repite hasta lograrlo'''
+    while True:
+        input = input(message)
+        try:
+            value = int(input)
+        except ValueError:
+            print("Debes escribir un número entero")
+            continue
+        
+        if value < min or value > max:
+            print(f"El número debe estar entre {min} y {max}")
+            continue
+        return value
+        
 
 def create_game(name, n, k):
     pass
