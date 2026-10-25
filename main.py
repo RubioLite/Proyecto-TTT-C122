@@ -7,12 +7,6 @@ from board import (
 from cli import get_name, get_int, ask_move, ask_yes_no, clear_screen
 from rules import evaluate_state
 
-def configure_match(name):
-    '''Pide n y k y devuelve una partida nueva, con tablero limpiio'''
-    n = get_int("Tamaño del tablero (3-9):", 3, 9)
-    k = get_int(f"Cantidad de fichas para ganar (3-{n})", 3, n)
-    return create_game(name, n, k)
-
 def create_game(name, n, k):
     '''Crea y devuelve el diccionario que representa la partida'''
     return {
@@ -66,15 +60,21 @@ def show_result(game):
     else:
         print(f"Estado desconocido... {game['state']}") # Esto no debería ocurrir
 
+def configure_match(name):
+    '''Pide n y k y devuelve una partida nueva, con tablero limpiio'''
+    n = get_int("Tamaño del tablero (3-9):", 3, 9)
+    k = get_int(f"Cantidad de fichas para ganar (3-{n})", 3, n)
+    return create_game(name, n, k)
+
 def main():
     '''Función principal que gestiona el progreso del juego'''
+    clear_screen()
     
     print("TicTacToe NxN")
     name = get_name()
+    game = configure_match(name)
     
     while True:
-        clear_screen()
-        game = configure_match(name)
         n = game["n"]
         k = game["k"]
         print(f"\nHola {name}")
@@ -86,7 +86,10 @@ def main():
             break
         if not ask_yes_no("\nMismo usuario? (s/n): "):
             name = get_name()
+        
+        clear_screen()
+        game = configure_match(name)
+    print("Gracias por jugar :3")
 
 if __name__ == "__main__":
     main()
-    print("Fin de la partida. Gracias por jugar :3")
