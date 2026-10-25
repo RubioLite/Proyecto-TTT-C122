@@ -1,4 +1,4 @@
-from rules import has_line, full_board, evaluate_state
+from rules import has_line, full_board, line_from, evaluate_state
 
 # ---------------------------------------------------------------------------
 # 1. Fila completa de X en 3×3
@@ -99,7 +99,6 @@ corner = [
     [" ", " ", " "],
 ]
 # Desde (0,0) hacia la izquierda (0,-1): sale del tablero en el paso 1
-from rules import line_from
 assert line_from(corner, (0, 0), (0, -1), "X", 3) is False
 # Desde (0,0) hacia arriba (-1,0): sale del tablero en el paso 1
 assert line_from(corner, (0, 0), (-1, 0), "X", 3) is False
