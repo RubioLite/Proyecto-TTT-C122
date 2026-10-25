@@ -89,7 +89,7 @@ def main():
         
         clear_screen()
         game = configure_match(name)
-    print("Gracias por jugar :3")
+    print("\nGracias por jugar :3")
 
 if __name__ == "__main__":
     main()
