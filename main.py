@@ -6,7 +6,6 @@ from board import (
 )
 from cli import get_name, get_int, ask_move
 from rules import full_board
-import os
 
 def create_game(name, n, k):
     '''Crea y devuelve el diccionario que representa la partida'''

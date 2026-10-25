@@ -1,4 +1,9 @@
+import os
 from board import free_space
+
+def clear_screen():
+    '''Limpia la consola'''
+    os.system("cls" if os.name == "nt" else "clear")
 
 def get_name():
     '''Pide un nombre y rechaza cadenas vacías o de solo espacios'''
@@ -33,3 +38,18 @@ def ask_move(board):
         if free_space(board, pos):
             return pos
         print("Casilla ocupada, por favor selecciona otra")
+        
+def ask_yes_no(message):
+    '''
+        Pide una respuesta de tipo sí/no
+        Devuelve True para "sí", False para "no"
+        Repite hasta lograrlo
+    '''
+    while True:
+        answer = input(message).strip().lower()
+        if answer in ("s", "si"):
+            return True
+        if answer in ("n", "no"):
+            return False
+        print("Por favor, responde 's' o 'n'")
+    
