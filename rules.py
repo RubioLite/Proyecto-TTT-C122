@@ -30,3 +30,19 @@ def has_line(board, symbol, k):
 def full_board(board):
     '''True si ya no quedan casillas vacías'''
     return not free_moves(board)
+
+def evaluate_state(board, k, user_s, ia_s):
+    '''
+        Devuelve el estado de la partida:
+        - "victory" si el usuario tiene k en línea
+        - "defeat" si la IA tiene k en línea
+        - "draw" si el tablero está lleno sin línea
+        - "running" en caso contrario
+    '''
+    if has_line(board, user_s, k):
+        return "victory"
+    if has_line(board, ia_s, k):
+        return "defeat"
+    if full_board(board):
+        return "draw"
+    return "running"
