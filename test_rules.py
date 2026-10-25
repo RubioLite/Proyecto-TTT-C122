@@ -104,5 +104,75 @@ assert line_from(corner, (0, 0), (0, -1), "X", 3) is False
 # Desde (0,0) hacia arriba (-1,0): sale del tablero en el paso 1
 assert line_from(corner, (0, 0), (-1, 0), "X", 3) is False
 
+# ---------------------------------------------------------------------------
+# 9. evaluate_state: línea de X → "victory"
+# ---------------------------------------------------------------------------
+board = [
+    ["X", "X", "X"],
+    [" ", " ", " "],
+    [" ", " ", " "],
+]
+assert evaluate_state(board, 3, "X", "O") == "victory"
+
+
+# ---------------------------------------------------------------------------
+# 10. evaluate_state: línea de O → "defeat"
+# ---------------------------------------------------------------------------
+board = [
+    ["O", " ", " "],
+    ["O", " ", " "],
+    ["O", " ", " "],
+]
+assert evaluate_state(board, 3, "X", "O") == "defeat"
+
+
+# ---------------------------------------------------------------------------
+# 11. evaluate_state: tablero lleno sin línea → "draw"
+#     Patrón específico para 3×3 que no tiene ninguna línea de 3.
+# ---------------------------------------------------------------------------
+board = [
+    ["X", "O", "X"],
+    ["O", "O", "X"],
+    ["X", "X", "O"],
+]
+assert evaluate_state(board, 3, "X", "O") == "draw"
+
+
+# ---------------------------------------------------------------------------
+# 12. evaluate_state: tablero con espacios y sin línea → "running"
+# ---------------------------------------------------------------------------
+board = [
+    ["X", " ", " "],
+    [" ", "O", " "],
+    [" ", " ", " "],
+]
+assert evaluate_state(board, 3, "X", "O") == "running"
+
+
+# ---------------------------------------------------------------------------
+# 13. evaluate_state: prioridad — X gana con tablero lleno → "victory"
+#     (no "draw", no "defeat"; verifica que el orden de checks es correcto)
+# ---------------------------------------------------------------------------
+board = [
+    ["X", "X", "X"],   # fila ganadora del usuario
+    ["O", "O", "O"],   # fila ganadora de la IA (caso artificial)
+    ["X", "O", "X"],   # relleno para que el tablero esté lleno
+]
+assert evaluate_state(board, 3, "X", "O") == "victory"
+
+
+# ---------------------------------------------------------------------------
+# 14. evaluate_state: K = 3 en tablero 5×5 → "victory"
+#     (no solo en 3×3; verifica que k se pasa correctamente)
+# ---------------------------------------------------------------------------
+board = [
+    [" ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " "],
+    ["X", "X", "X", " ", " "],
+    [" ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " "],
+]
+assert evaluate_state(board, 3, "X", "O") == "victory"
+assert evaluate_state(board, 4, "X", "O") == "running"   # k=4 no se cumple
 
 print("Todo correcto — reglas.py verificado")
