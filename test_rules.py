@@ -1,4 +1,4 @@
-from rules import has_line, full_board
+from rules import has_line, full_board, evaluate_state
 
 # ---------------------------------------------------------------------------
 # 1. Fila completa de X en 3×3

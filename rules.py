@@ -45,4 +45,4 @@ def evaluate_state(board, k, user_s, ia_s):
         return "defeat"
     if full_board(board):
         return "draw"
-    return "running"
+    return
