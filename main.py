@@ -4,8 +4,14 @@ from board import (
     place_piece,
     random_play,
 )
-from cli import get_name, get_int, ask_move
+from cli import get_name, get_int, ask_move, ask_yes_no, clear_screen
 from rules import evaluate_state
+
+def configure_match(name):
+    '''Pide n y k y devuelve una partida nueva, con tablero limpiio'''
+    n = get_int("Tamaño del tablero (3-9):", 3, 9)
+    k = get_int(f"Cantidad de fichas para ganar (3-{n})", 3, n)
+    return create_game(name, n, k)
 
 def create_game(name, n, k):
     '''Crea y devuelve el diccionario que representa la partida'''
@@ -60,22 +66,27 @@ def show_result(game):
     else:
         print(f"Estado desconocido... {game['state']}") # Esto no debería ocurrir
 
-def play():
+def main():
     '''Función principal que gestiona el progreso del juego'''
     
     print("TicTacToe NxN")
-    
     name = get_name()
-    n = get_int("Tamaño del tablero (3-9):", 3, 9)
-    k = get_int(f"Cantidad de fichas para ganar (3-{n})", 3, n)
-    game = create_game(name, n, k)
     
-    print(f"\nHola {name}")
-    print(f"Bienvenido a TicTacToe {n}x{n}, conecta {k} fichas seguidas para ganar")
-    
-    play_match(game)
-    show_result(game)
-    print("Fin de la partida. Gracias por jugar :3")
+    while True:
+        clear_screen()
+        game = configure_match(name)
+        n = game["n"]
+        k = game["k"]
+        print(f"\nHola {name}")
+        print(f"Bienvenido a TicTacToe {n}x{n}, conecta {k} fichas seguidas para ganar")
+        play_match(game)
+        show_result(game)
+        
+        if not ask_yes_no("\nOtra partida? (s/n): "):
+            break
+        if not ask_yes_no("\nMismo usuario? (s/n): "):
+            name = get_name()
 
 if __name__ == "__main__":
-    play()
+    main()
+    print("Fin de la partida. Gracias por jugar :3")
