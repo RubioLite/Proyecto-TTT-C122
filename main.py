@@ -62,8 +62,8 @@ def show_result(game):
 
 def configure_match(name):
     '''Pide n y k y devuelve una partida nueva, con tablero limpio'''
-    n = get_int("Tamaño del tablero (3-9):", 3, 9)
-    k = get_int(f"Cantidad de fichas para ganar (3-{n})", 3, n)
+    n = get_int("Tamaño del tablero (3-9): ", 3, 9)
+    k = get_int(f"Cantidad de fichas para ganar (3-{n}): ", 3, n)
     return create_game(name, n, k)
 
 def main():
